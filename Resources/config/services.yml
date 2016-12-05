@@ -1,0 +1,6 @@
+parameters:
+    nvbooster_sortingmanager.class: nvbooster\SortingManager\SortingManager
+    
+services:
+    nvbooster_sortingmanager:
+        class: "%nvbooster_sortingmanager.class%"        
