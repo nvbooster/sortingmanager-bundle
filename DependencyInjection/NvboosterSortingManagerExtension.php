@@ -6,6 +6,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
+use Symfony\Component\DependencyInjection\Reference;
 
 /**
  * This is the class that loads and manages your bundle configuration
@@ -29,12 +30,17 @@ class NvboosterSortingManagerExtension extends Extension
             $managerDefinition = $container->getDefinition('nvbooster_sortingmanager');
             $managerDefinition->addArgument($config['defaults']);
 
-            if ($config['storages']['cookie']) {
+            if ($config['storages']['cookie']['enabled']) {
                 $loader->load('storages/cookies.yml');
+                $managerDefinition->addMethodCall('registerStorage', array(new Reference('nvbooster_sortingmanager_storage.cookie')));
+
+                $cookieSaveListener = $container->getDefinition('nvbooster_sortingmanager.cookie_save_listener');
+                $cookieSaveListener->replaceArgument(1, $config['storages']['cookie']['expire']);
             }
 
             if ($config['storages']['session']) {
                 $loader->load('storages/session.yml');
+                $managerDefinition->addMethodCall('registerStorage', array(new Reference('nvbooster_sortingmanager_storage.session')));
             }
         }
     }
