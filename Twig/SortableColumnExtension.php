@@ -78,7 +78,7 @@ class SortableColumnExtension extends \Twig_Extension
         }
     }
 
-    /**
+        /**
      * @param array $params
      *
      * @return string
@@ -90,12 +90,27 @@ class SortableColumnExtension extends \Twig_Extension
             $params
         );
 
+        return '?' . Request::normalizeQueryString(implode('&', $this->plainparams($params)));
+    }
+
+    /**
+     * @param array $params
+     */
+    protected function plainparams($params = array(), $parent = false)
+    {
         $parts = array();
         foreach ($params as $k => $v) {
-            $parts[] = $k.'='.$v;
+            $name = $parent ? $parent . '[' . (is_int($k) ? '' : $k) . ']' : $k;
+            if (is_array($v)) {
+                foreach ($this->plainparams($v, $name) as $part) {
+                    $parts[] = $part;
+                }
+            } else {
+                $parts[] = $name . '=' . $v;
+            }
         }
 
-        return '?' . Request::normalizeQueryString(implode('&', $parts));
+        return $parts;
     }
 
     /**
