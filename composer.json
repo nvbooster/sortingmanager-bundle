@@ -4,29 +4,27 @@
     "type" : "symfony-bundle",
     "license" : "MIT",
     "authors" : [{
-            "name" : "Vyacheslav Nechipurenko",
-            "email" : "nvb@aproxima.ru",
-            "homepage" : "https://github.com/nvbooster"
-        }
-    ],
+        "name" : "Vyacheslav Nechipurenko",
+        "email" : "nvb@aproxima.ru",
+        "homepage" : "https://github.com/nvbooster"
+    }],
     "autoload" : {
         "psr-4" : {
             "nvbooster\\SortingManagerBundle\\" : ""
         }
     },
     "repositories" : [{
-            "type" : "git",
-            "url" : "https://github.com/nvbooster/sortingmanager.git"
-        }
-    ],
+        "type" : "git",
+        "url" : "https://github.com/nvbooster/sortingmanager.git"
+    }],
     "require" : {
-        "nvbooster/sortingmanager" : "~1.0",
-        "symfony/symfony" : "~2.5.0"
+        "nvbooster/sortingmanager" : "~2.0",
+        "symfony/symfony" : "~2.6"
     },
     "minimum-stability" : "dev",
     "extra" : {
         "branch-alias" : {
-            "dev-master" : "1.x-dev"
+            "dev-master" : "2.x-dev"
         }
     }
 }
