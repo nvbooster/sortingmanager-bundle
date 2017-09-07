@@ -19,7 +19,8 @@
     }],
     "require" : {
         "nvbooster/sortingmanager" : "~2.0",
-        "symfony/symfony" : "~2.6"
+        "symfony/symfony" : "~2.6",
+        "twig/twig" : "~1.13"
     },
     "minimum-stability" : "dev",
     "extra" : {
