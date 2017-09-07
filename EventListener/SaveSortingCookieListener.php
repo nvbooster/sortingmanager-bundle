@@ -53,8 +53,6 @@ class SaveSortingCookieListener implements EventSubscriberInterface
      */
     public static function getSubscribedEvents()
     {
-        return array(
-            KernelEvents::RESPONSE => array('onKernelResponse', -128),
-        );
+        return [ KernelEvents::RESPONSE => ['onKernelResponse', -128] ];
     }
 }

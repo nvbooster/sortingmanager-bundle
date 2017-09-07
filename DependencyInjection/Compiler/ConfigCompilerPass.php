@@ -24,9 +24,9 @@ class ConfigCompilerPass implements CompilerPassInterface
         foreach ($taggedServices as $id => $tags) {
             $definition = $container->getDefinition($id);
             foreach ($tags as $attributes) {
-                $definition->addMethodCall('register', array(
+                $definition->addMethodCall('register', [
                     isset($attributes['alias']) ? $attributes['alias'] : null
-                ));
+                ]);
             }
         }
     }

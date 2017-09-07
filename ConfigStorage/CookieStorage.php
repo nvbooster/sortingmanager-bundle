@@ -25,7 +25,7 @@ class CookieStorage implements ConfigStorageInterface
      */
     public function __construct(RequestStack $requestStack)
     {
-        $this->updates = array();
+        $this->updates = [];
         $this->request = $requestStack->getMasterRequest();
     }
 
