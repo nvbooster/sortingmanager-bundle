@@ -15,17 +15,18 @@
         }
     },
     "repositories" : [{
-        "type" : "git",
-        "url" : "https://github.com/nvbooster/sortingmanager.git"
-    }],
+            "type" : "git",
+            "url" : "https://github.com/nvbooster/sortingmanager.git"
+        }
+    ],
     "require" : {
         "nvbooster/sortingmanager" : "~1.0",
         "symfony/symfony" : "~2.5.0"
     },
     "minimum-stability" : "dev",
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.x-dev"
+    "extra" : {
+        "branch-alias" : {
+            "dev-master" : "1.x-dev"
         }
     }
 }
