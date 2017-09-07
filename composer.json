@@ -1,7 +1,8 @@
 {
-    "name": "nvbooster/sortingmanagerbundle",
-    "description": "Symfony integration bundle for SortingManager",
-    "type": "symfony-bundle",
+    "name" : "nvbooster/sortingmanagerbundle",
+    "description" : "Symfony integration bundle for SortingManager",
+    "type" : "symfony-bundle",
+    "license" : "MIT",
     "authors" : [{
             "name" : "Vyacheslav Nechipurenko",
             "email" : "nvb@aproxima.ru",
@@ -14,14 +15,17 @@
         }
     },
     "repositories" : [{
-            "type" : "git",
-            "url" : "https://github.com/nvbooster/sortingmanager.git"
-        }
-    ],    
-    "require": {
-        "nvbooster/sortingmanager": "dev-master",
-        "symfony/symfony": ">=2.5"
+        "type" : "git",
+        "url" : "https://github.com/nvbooster/sortingmanager.git"
+    }],
+    "require" : {
+        "nvbooster/sortingmanager" : "~1.0",
+        "symfony/symfony" : "~2.5.0"
     },
-    "license": "GNU GPL 3.0",    
-    "minimum-stability": "dev"
+    "minimum-stability" : "dev",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.x-dev"
+        }
+    }
 }
