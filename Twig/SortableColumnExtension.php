@@ -43,34 +43,35 @@ class SortableColumnExtension extends \Twig_Extension
      */
     public function getFunctions()
     {
-        return array(
-            'sortable_column' => new \Twig_Function_Method($this, 'renderColumnHeader', array(
-                'is_safe' => array('html')
-            )),
-        );
+        return [
+            new \Twig_SimpleFunction('sortable_column', [$this, 'renderColumnHeader'], [
+                'needs_environment' => true,
+                'is_safe' => ['html']
+            ])
+        ];
     }
 
     /**
-     * @param Control $control
-     * @param string  $name
-     * @param array   $options
+     * @param \Twig_Environment $env
+     * @param Control           $control
+     * @param string            $name
+     * @param array             $options
      *
      * @return string
      */
-    public function renderColumnHeader(Control $control, $name, $options = array())
+    public function renderColumnHeader(\Twig_Environment $env, Control $control, $name, $options = array())
     {
         if ($control->isColumnSortable($name)) {
             $options = array_merge($control->getColumnOptions($name), $options);
-            $classes = array($this->escape($options['column_sortable_class']));
+            $classes = [$this->escape($env, $options['column_sortable_class'])];
             if ($control->isColumnSorted($name)) {
-                $classes[] = $this->escape($control->getColumnSortOrder($name) > 0 ? $options['column_ascend_class'] : $options['column_descend_class']);
+                $classes[] = $this->escape($env, $control->getColumnSortOrder($name) > 0 ? $options['column_ascend_class'] : $options['column_descend_class']);
             }
-            $link = $this->buildLink(array(
+            $link = $this->buildLink([
                 $control->getSortByParam() => $name,
                 $control->getSortOrderParam() => $control->getColumnSortOrder($name) > 0 ? -1 : 1
-            ));
-            $label = $this->translator ? $this->escape($this->translator->trans($options['label'], array(), $options['translation_domain'])) : $options['label'];
-
+            ]);
+            $label = $this->escape($env, $this->translator ? $this->translator->trans($options['label'], array(), $options['translation_domain']) : $options['label']);
 
             return '<a href="' . $link . '" class="' . implode(' ', $classes) . '">' . $label . '</a>';
         } else {
@@ -115,7 +116,8 @@ class SortableColumnExtension extends \Twig_Extension
 
     /**
      * {@inheritdoc}
-     * @see Twig_Extension::initRuntime()
+     *
+     * @see \Twig_Extension::initRuntime()
      */
     public function initRuntime(\Twig_Environment $env)
     {
@@ -135,7 +137,8 @@ class SortableColumnExtension extends \Twig_Extension
 
     /**
      * {@inheritdoc}
-     * @see Twig_ExtensionInterface::getName()
+     *
+     * @see \Twig_ExtensionInterface::getName()
      */
     public function getName()
     {

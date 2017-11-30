@@ -1,27 +1,33 @@
 {
-	"name" : "nvbooster/sortingmanagerbundle",
-	"description" : "Symfony integration bundle for SortingManager",
-	"type" : "symfony-bundle",
-	"authors" : [{
-			"name" : "Vyacheslav Nechipurenko",
-			"email" : "nvb@aproxima.ru",
-			"homepage" : "https://github.com/nvbooster"
-		}
-	],
-	"autoload" : {
-		"psr-4" : {
-			"nvbooster\\SortingManagerBundle\\" : ""
-		}
-	},
-	"repositories" : [{
-			"type" : "git",
-			"url" : "https://github.com/nvbooster/sortingmanager.git"
-		}
-	],
-	"require" : {
-		"nvbooster/sortingmanager" : "dev-master",
-		"symfony/framework-bundle" : ">=2.5"
-	},
-	"license" : "GNU GPL 3.0",
-	"minimum-stability" : "dev"
+    "name" : "nvbooster/sortingmanagerbundle",
+    "description" : "Symfony integration bundle for SortingManager",
+    "type" : "symfony-bundle",
+    "license" : "MIT",
+    "authors" : [{
+        "name" : "Vyacheslav Nechipurenko",
+        "email" : "nvb@aproxima.ru",
+        "homepage" : "https://github.com/nvbooster"
+    }],
+    "autoload" : {
+        "psr-4" : {
+            "nvbooster\\SortingManagerBundle\\" : ""
+        }
+    },
+    "repositories" : [{
+        "type" : "git",
+        "url" : "https://github.com/nvbooster/sortingmanager.git"
+    }],
+    "require" : {
+        "nvbooster/sortingmanager" : "~2.0",
+        "symfony/framework-bundle" : "~2.6|~3.0"
+    },
+    "suggest" : {
+    	"symfony/twig-bundle" : "For using twig extension"
+    },
+    "minimum-stability" : "dev",
+    "extra" : {
+        "branch-alias" : {
+            "dev-master" : "2.x-dev"
+        }
+    }
 }

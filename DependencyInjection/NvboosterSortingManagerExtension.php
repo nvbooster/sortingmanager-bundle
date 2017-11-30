@@ -32,7 +32,7 @@ class NvboosterSortingManagerExtension extends Extension
 
             if ($config['storages']['cookie']['enabled']) {
                 $loader->load('storages/cookies.yml');
-                $managerDefinition->addMethodCall('registerStorage', array(new Reference('nvbooster_sortingmanager_storage.cookie')));
+                $managerDefinition->addMethodCall('registerStorage', [new Reference('nvbooster_sortingmanager_storage.cookie')]);
 
                 $cookieSaveListener = $container->getDefinition('nvbooster_sortingmanager.cookie_save_listener');
                 $cookieSaveListener->replaceArgument(1, $config['storages']['cookie']['expire']);
@@ -40,7 +40,7 @@ class NvboosterSortingManagerExtension extends Extension
 
             if ($config['storages']['session']['enabled']) {
                 $loader->load('storages/session.yml');
-                $managerDefinition->addMethodCall('registerStorage', array(new Reference('nvbooster_sortingmanager_storage.session')));
+                $managerDefinition->addMethodCall('registerStorage', [new Reference('nvbooster_sortingmanager_storage.session')]);
             }
         }
     }

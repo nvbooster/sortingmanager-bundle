@@ -1,7 +1,7 @@
 parameters:
     nvbooster_sortingmanager.class: nvbooster\SortingManager\SortingManager
     nvbooster_sortingmanager.twigextension.class: nvbooster\SortingManagerBundle\Twig\SortableColumnExtension
-    
+
 services:
     nvbooster_sortingmanager:
         class: "%nvbooster_sortingmanager.class%"
