@@ -38,7 +38,7 @@ class NvboosterSortingManagerExtension extends Extension
                 $cookieSaveListener->replaceArgument(1, $config['storages']['cookie']['expire']);
             }
 
-            if ($config['storages']['session']) {
+            if ($config['storages']['session']['enabled']) {
                 $loader->load('storages/session.yml');
                 $managerDefinition->addMethodCall('registerStorage', array(new Reference('nvbooster_sortingmanager_storage.session')));
             }

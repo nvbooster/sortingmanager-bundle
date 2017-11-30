@@ -28,10 +28,10 @@ class SortableColumnExtension extends \Twig_Extension
     protected $request;
 
     /**
-     * @param TranslatorInterface $translator
      * @param RequestStack        $stack
+     * @param TranslatorInterface $translator
      */
-    public function __construct(TranslatorInterface $translator, RequestStack $stack)
+    public function __construct(RequestStack $stack, TranslatorInterface $translator = null)
     {
         $this->translator = $translator;
         $this->request = $stack->getMasterRequest();
@@ -69,7 +69,7 @@ class SortableColumnExtension extends \Twig_Extension
                 $control->getSortByParam() => $name,
                 $control->getSortOrderParam() => $control->getColumnSortOrder($name) > 0 ? -1 : 1
             ));
-            $label = $this->escape($this->translator->trans($options['label'], array(), $options['translation_domain']));
+            $label = $this->translator ? $this->escape($this->translator->trans($options['label'], array(), $options['translation_domain'])) : $options['label'];
 
 
             return '<a href="' . $link . '" class="' . implode(' ', $classes) . '">' . $label . '</a>';

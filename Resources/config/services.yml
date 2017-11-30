@@ -5,8 +5,9 @@ parameters:
 services:
     nvbooster_sortingmanager:
         class: "%nvbooster_sortingmanager.class%"
+        public: true
     nvbooster_sortingmanager.twigextension.class:
         class: "%nvbooster_sortingmanager.twigextension.class%"
-        arguments: ["@translator", "@request_stack"]
+        arguments: ["@request_stack", "@?translator"]
         tags:
-            - { name: twig.extension }        
+            - { name: twig.extension }
