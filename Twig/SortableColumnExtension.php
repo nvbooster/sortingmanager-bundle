@@ -18,11 +18,6 @@ class SortableColumnExtension extends \Twig_Extension
     protected $translator;
 
     /**
-     * @var \Twig_Environment
-     */
-    protected $env;
-
-    /**
      * @var Request
      */
     protected $request;
@@ -59,7 +54,7 @@ class SortableColumnExtension extends \Twig_Extension
      *
      * @return string
      */
-    public function renderColumnHeader(\Twig_Environment $env, Control $control, $name, $options = array())
+    public function renderColumnHeader(\Twig_Environment $env, Control $control, $name, $options = [])
     {
         if ($control->isColumnSortable($name)) {
             $options = array_merge($control->getColumnOptions($name), $options);
@@ -71,7 +66,7 @@ class SortableColumnExtension extends \Twig_Extension
                 $control->getSortByParam() => $name,
                 $control->getSortOrderParam() => $control->getColumnSortOrder($name) > 0 ? -1 : 1
             ]);
-            $label = $this->escape($env, $this->translator ? $this->translator->trans($options['label'], array(), $options['translation_domain']) : $options['label']);
+            $label = $this->escape($env, $this->translator ? $this->translator->trans($options['label'], [], $options['translation_domain']) : $options['label']);
 
             return '<a href="' . $link . '" class="' . implode(' ', $classes) . '">' . $label . '</a>';
         } else {
@@ -126,13 +121,14 @@ class SortableColumnExtension extends \Twig_Extension
     }
 
     /**
-     * @param string $string
+     * @param \Twig_Environment $env
+     * @param string            $string
      *
      * @return string
      */
-    protected function escape($string)
+    protected function escape(\Twig_Environment $env, $string)
     {
-        return twig_escape_filter($this->env, $string);
+        return twig_escape_filter($env, $string);
     }
 
     /**
