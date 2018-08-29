@@ -31,7 +31,7 @@ class StorageCompilerPass implements CompilerPassInterface
             foreach ($tags as $attributes) {
                 $definition->addMethodCall('registerStorage', [
                     new Reference($id),
-                    $attributes['alias'] ?: null
+                    !empty($attributes['alias']) ? $attributes['alias'] : null
                 ]);
             }
         }
