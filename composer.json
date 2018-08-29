@@ -19,13 +19,13 @@
     }],
     "require" : {
         "nvbooster/sortingmanager" : "~2.0",
-        "symfony/framework-bundle" : "~2.6|~3.0"
+        "symfony/framework-bundle" : "~2.6|~3.0|~4.0"
     },
     "require-dev" : {
         "twig/twig" : "~2.0"
     },
     "suggest" : {
-    	"symfony/twig-bundle" : "For using twig extension"
+    	"symfony/twig-bundle" : "For autoregistering twig extension"
     },
     "minimum-stability" : "dev",
     "extra" : {

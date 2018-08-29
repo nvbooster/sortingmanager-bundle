@@ -1,0 +1,9 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+        
+    nvbooster\SortingManager\SortingManager: ~
+    nvbooster\SortingManager\SortingManagerInterface: '@nvbooster\SortingManager\SortingManager'
+    nvbooster\SortingManagerBundle\Twig\SortableColumnExtension: ~ 

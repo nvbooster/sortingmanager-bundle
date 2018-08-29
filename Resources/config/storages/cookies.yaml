@@ -1,0 +1,10 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    nvbooster\SortingManagerBundle\ConfigStorage\CookieStorage: ~
+    nvbooster\SortingManagerBundle\EventListener\SaveSortingCookieListener:
+        arguments: { $cookieExpire: ~ }
+        tags: ['kernel.event_subscriber']

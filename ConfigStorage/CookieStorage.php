@@ -1,9 +1,10 @@
 <?php
+
 namespace nvbooster\SortingManagerBundle\ConfigStorage;
 
-use nvbooster\SortingManager\ConfigStorage\ConfigStorageInterface;
-use nvbooster\SortingManager\ConfigInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
+use nvbooster\SortingManager\ConfigInterface;
+use nvbooster\SortingManager\ConfigStorage\ConfigStorageInterface;
 
 /**
  * @author nvb <nvb@aproxima.ru>
@@ -11,7 +12,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 class CookieStorage implements ConfigStorageInterface
 {
     /**
-     * @var Request
+     * @var \Symfony\Component\HttpFoundation\Request
      */
     protected $request;
 

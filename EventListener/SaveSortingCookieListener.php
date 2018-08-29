@@ -1,11 +1,12 @@
 <?php
+
 namespace nvbooster\SortingManagerBundle\EventListener;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpFoundation\Cookie;
+use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use nvbooster\SortingManagerBundle\ConfigStorage\CookieStorage;
-use Symfony\Component\HttpKernel\KernelEvents;
-use Symfony\Component\HttpFoundation\Cookie;
 
 /**
  * @author nvb <nvb@aproxima.ru>

@@ -1,8 +1,0 @@
-parameters:
-    nvbooster_sortingmanager_storage.session.class: nvbooster\SortingManagerBundle\ConfigStorage\SessionStorage
-
-services:
-    nvbooster_sortingmanager_storage.session:
-        class: "%nvbooster_sortingmanager_storage.session.class%"
-        arguments: ["@session"]
-        public: false

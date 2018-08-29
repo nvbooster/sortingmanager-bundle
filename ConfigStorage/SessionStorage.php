@@ -1,9 +1,10 @@
 <?php
+
 namespace nvbooster\SortingManagerBundle\ConfigStorage;
 
-use nvbooster\SortingManager\ConfigStorage\ConfigStorageInterface;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use nvbooster\SortingManager\ConfigInterface;
-use Symfony\Component\HttpFoundation\Session\Session;
+use nvbooster\SortingManager\ConfigStorage\ConfigStorageInterface;
 
 /**
  * @author nvb <nvb@aproxima.ru>
@@ -11,14 +12,14 @@ use Symfony\Component\HttpFoundation\Session\Session;
 class SessionStorage implements ConfigStorageInterface
 {
     /**
-     * @var Session
+     * @var SessionInterface
      */
     protected $session;
 
     /**
-     * @param Session $session
+     * @param SessionInterface $session
      */
-    public function __construct(Session $session)
+    public function __construct(SessionInterface $session)
     {
         $this->session = $session;
     }

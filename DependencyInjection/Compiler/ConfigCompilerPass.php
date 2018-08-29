@@ -1,8 +1,10 @@
 <?php
+
 namespace nvbooster\SortingManagerBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
+use nvbooster\SortingManager\SortingManager;
 
 /**
  * @author nvb <nvb@aproxima.ru>
@@ -16,10 +18,10 @@ class ConfigCompilerPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        if (!$container->hasDefinition('nvbooster_sortingmanager')) {
+        if (!$container->hasDefinition(SortingManager::class)) {
             return;
         }
-        $taggedServices = $container->findTaggedServiceIds('sorting_config');
+        $taggedServices = $container->findTaggedServiceIds('nvbooster_sortingmanager.config');
 
         foreach ($taggedServices as $id => $tags) {
             $definition = $container->getDefinition($id);

@@ -1,16 +1,21 @@
 <?php
+
 namespace nvbooster\SortingManagerBundle\Twig;
 
-use nvbooster\SortingManager\Control;
-use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Translation\TranslatorInterface;
+use nvbooster\SortingManager\Control;
 
 /**
  * @author nvb <nvb@aproxima.ru>
  */
 class SortableColumnExtension extends \Twig_Extension
 {
+    /**
+     * @var \Twig_Environment
+     */
+    protected $env;
 
     /**
      * @var TranslatorInterface
@@ -34,7 +39,18 @@ class SortableColumnExtension extends \Twig_Extension
 
     /**
      * {@inheritdoc}
-     * @see Twig_Extension::getFunctions()
+     *
+     * @see \Twig_Extension::initRuntime()
+     */
+    public function initRuntime(\Twig_Environment $env)
+    {
+        parent::initRuntime($env);
+        $this->env = $env;
+    }
+
+    /**
+     * {@inheritdoc}
+     * @see \Twig_Extension::getFunctions()
      */
     public function getFunctions()
     {
@@ -110,17 +126,6 @@ class SortableColumnExtension extends \Twig_Extension
     }
 
     /**
-     * {@inheritdoc}
-     *
-     * @see \Twig_Extension::initRuntime()
-     */
-    public function initRuntime(\Twig_Environment $env)
-    {
-        parent::initRuntime($env);
-        $this->env = $env;
-    }
-
-    /**
      * @param \Twig_Environment $env
      * @param string            $string
      *
@@ -129,15 +134,5 @@ class SortableColumnExtension extends \Twig_Extension
     protected function escape(\Twig_Environment $env, $string)
     {
         return twig_escape_filter($env, $string);
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @see \Twig_ExtensionInterface::getName()
-     */
-    public function getName()
-    {
-        return 'sortingmanager_twigextension';
     }
 }

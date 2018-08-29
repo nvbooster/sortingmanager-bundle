@@ -2,11 +2,13 @@
 
 namespace nvbooster\SortingManagerBundle\DependencyInjection;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
-use Symfony\Component\DependencyInjection\Reference;
+use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use nvbooster\SortingManager\SortingManager;
+use nvbooster\SortingManagerBundle\EventListener\SaveSortingCookieListener;
+use nvbooster\SortingManagerBundle\Twig\SortableColumnExtension;
 
 /**
  * This is the class that loads and manages your bundle configuration
@@ -25,22 +27,25 @@ class NvboosterSortingManagerExtension extends Extension
 
         if ($config['enabled']) {
             $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-            $loader->load('services.yml');
+            $loader->load('services.yaml');
 
-            $managerDefinition = $container->getDefinition('nvbooster_sortingmanager');
+            if (!class_exists(\Twig_Extension::class)) {
+                $container->removeDefinition(SortableColumnExtension::class);
+            }
+
+            $managerDefinition = $container->getDefinition(SortingManager::class);
             $managerDefinition->addArgument($config['defaults']);
 
             if ($config['storages']['cookie']['enabled']) {
-                $loader->load('storages/cookies.yml');
-                $managerDefinition->addMethodCall('registerStorage', [new Reference('nvbooster_sortingmanager_storage.cookie')]);
+                $loader->load('storages/cookies.yaml');
 
-                $cookieSaveListener = $container->getDefinition('nvbooster_sortingmanager.cookie_save_listener');
-                $cookieSaveListener->replaceArgument(1, $config['storages']['cookie']['expire']);
+                $container->getDefinition(SaveSortingCookieListener::class)
+                    ->replaceArgument(1, $config['storages']['cookie']['expire'])
+                ;
             }
 
             if ($config['storages']['session']['enabled']) {
-                $loader->load('storages/session.yml');
-                $managerDefinition->addMethodCall('registerStorage', [new Reference('nvbooster_sortingmanager_storage.session')]);
+                $loader->load('storages/session.yaml');
             }
         }
     }
